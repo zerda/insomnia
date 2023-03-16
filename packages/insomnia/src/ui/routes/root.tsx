@@ -12,7 +12,6 @@ import { getVCS } from '../../sync/vcs/vcs';
 import { AccountToolbar } from '../components/account-toolbar';
 import { AppHeader } from '../components/app-header';
 import { ErrorBoundary } from '../components/error-boundary';
-import { OrganizationsNav } from '../components/organizations-navbar';
 import { Toast } from '../components/toast';
 import { WorkspaceHeader } from '../components/workspace-header';
 import { AppHooks } from '../containers/app-hooks';
@@ -57,8 +56,8 @@ const Layout = styled.div({
   backgroundColor: 'var(--color-bg)',
   gridTemplate: `
     'Header Header' auto
-    'Navbar Content' 1fr
-    / 50px 1fr;
+    'Content Content' 1fr
+    / 1fr;
   `,
 });
 
@@ -81,7 +80,6 @@ const Root = () => {
         <ErrorBoundary showAlert>
           <Modals />
           <Layout>
-            <OrganizationsNav />
             <AppHeader
               gridCenter={workspaceData ? <WorkspaceHeader {...workspaceData} /> : null}
               gridRight={<AccountToolbar />}
