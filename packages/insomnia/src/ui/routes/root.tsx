@@ -9,7 +9,6 @@ import { defaultOrganization, Organization } from '../../models/organization';
 import { isRemoteProject } from '../../models/project';
 import { initializeProjectFromTeam } from '../../sync/vcs/initialize-model-from';
 import { getVCS } from '../../sync/vcs/vcs';
-import { AccountToolbar } from '../components/account-toolbar';
 import { AppHeader } from '../components/app-header';
 import { ErrorBoundary } from '../components/error-boundary';
 import { Toast } from '../components/toast';
@@ -82,7 +81,6 @@ const Root = () => {
           <Layout>
             <AppHeader
               gridCenter={workspaceData ? <WorkspaceHeader {...workspaceData} /> : null}
-              gridRight={<AccountToolbar />}
             />
             <Outlet />
           </Layout>
