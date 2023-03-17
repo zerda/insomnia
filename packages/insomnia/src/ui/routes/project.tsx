@@ -17,7 +17,6 @@ import {
   useNavigate,
   useParams,
   useRevalidator,
-  useRouteLoaderData,
   useSearchParams,
   useSubmit,
 } from 'react-router-dom';
@@ -73,7 +72,6 @@ import { SidebarLayout } from '../components/sidebar-layout';
 import { Button } from '../components/themed-button/button';
 import { WorkspaceCard } from '../components/workspace-card';
 import { importClipBoard, importFile, importUri } from '../import';
-import { RootLoaderData } from './root';
 
 const StyledDropdownButton = styled(DropdownButton).attrs({
   variant: 'outlined',
@@ -129,20 +127,6 @@ const Pane = styled.div({
   gap: '1rem',
   flex: '1 0 auto',
   overflowY: 'auto',
-});
-
-const SidebarTitle = styled.h2({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 'var(--padding-sm)',
-  padding: 'var(--padding-sm)',
-  fontSize: 'var(--font-size-md)',
-  margin: 0,
-  paddingLeft: 'var(--padding-md)',
-  borderBottom: '1px solid var(--hl-md)',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
 });
 
 const SidebarSection = styled.div({
@@ -258,7 +242,6 @@ const OrganizationProjectsSidebar: FC<{
 }> = ({
   activeProject,
   projects,
-  title,
   organizationId,
   collectionsCount,
   documentsCount,
@@ -267,7 +250,6 @@ const OrganizationProjectsSidebar: FC<{
   createNewDocument,
 }) => {
   const createNewProjectFetcher = useFetcher();
-  const { organizations } = useRouteLoaderData('root') as RootLoaderData;
   const navigate = useNavigate();
   const submit = useSubmit();
   const [searchParams] = useSearchParams();
@@ -282,30 +264,6 @@ const OrganizationProjectsSidebar: FC<{
         gridArea: '1 / 1 / -1 / -1',
       }}
     >
-      <SidebarTitle>
-        <Dropdown
-          placement="bottom end"
-          triggerButton={
-            <DropdownButton>
-              {title} <i className="fa fa-caret-down" />
-            </DropdownButton>
-          }
-        >
-          <DropdownSection items={organizations}>
-            {organization => (
-              <DropdownItem key={organization._id}>
-                <ItemContent
-                  label={organization.name}
-                  isSelected={organization._id === organizationId}
-                  onClick={() => {
-                    navigate(`/organization/${organization._id}`);
-                  }}
-                />
-              </DropdownItem>
-            )}
-          </DropdownSection>
-        </Dropdown>
-      </SidebarTitle>
       <SidebarSection>
         <SidebarSectionTitle>Projects ({projects.length})</SidebarSectionTitle>
         {shouldShowSearch && <Button
