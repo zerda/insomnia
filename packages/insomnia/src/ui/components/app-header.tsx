@@ -2,14 +2,6 @@ import classNames from 'classnames';
 import React, { FC, Fragment, ReactNode } from 'react';
 import styled from 'styled-components';
 
-import coreLogo from '../images/insomnia-logo.svg';
-
-const LogoWrapper = styled.div({
-  display: 'flex',
-  width: '50px',
-  justifyContent: 'center',
-});
-
 export interface AppHeaderProps {
   gridCenter?: ReactNode;
   gridRight?: ReactNode;
@@ -27,7 +19,7 @@ const StyledHeader = styled.div({
   borderBottom: '1px solid var(--hl-md)',
   display: 'grid',
   padding: 'var(--padding-xs) 0',
-  gridTemplateColumns: '1fr 1fr 1fr',
+  gridTemplateColumns: 'auto auto 1fr',
   gridTemplateRows: '1fr',
   gridTemplateAreas: "'header_left header_center header_right'",
   '.header_left': {
@@ -38,6 +30,7 @@ const StyledHeader = styled.div({
     gap: 'var(--padding-sm)',
   },
   '.header_center': {
+    height: '28px',
     gridArea: 'header_center',
     textAlign: 'center',
     display: 'flex',
@@ -75,13 +68,6 @@ export const AppHeader: FC<AppHeaderProps> = ({
 }) => {
   return (
     <Header
-      gridLeft={(
-        <Fragment>
-          <LogoWrapper>
-            <img style={{ zIndex: 1 }} src={coreLogo} alt="Insomnia" width="28" height="28" />
-          </LogoWrapper>
-        </Fragment>
-      )}
       gridCenter={gridCenter}
       gridRight={
         <Fragment>
