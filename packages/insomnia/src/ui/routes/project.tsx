@@ -34,7 +34,6 @@ import {
   ACTIVITY_SPEC,
   DashboardSortOrder,
 } from '../../common/constants';
-import { clickLink } from '../../common/electron-helpers';
 import { ForceToWorkspace } from '../../common/import';
 import { fuzzyMatchAll, isNotNullOrUndefined } from '../../common/misc';
 import { descendingNumberSort, sortMethodMap } from '../../common/sorting';
@@ -458,26 +457,6 @@ const OrganizationProjectsSidebar: FC<{
           </Item>
         </List>
       </ProjectListContainer>
-
-      <SidebarDivider />
-
-      <List
-        onAction={key => {
-          clickLink(key);
-        }}
-      >
-        <Item
-          key="https://insomnia.rest/pricing"
-          aria-label="Help and Feedback"
-        >
-          <SidebarListItemContent level={1}>
-            <SidebarListItemTitle
-              icon="arrow-up-right-from-square"
-              label="Explore Subscriptions"
-            />
-          </SidebarListItemContent>
-        </Item>
-      </List>
     </Sidebar>
   );
 };
